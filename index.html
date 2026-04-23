@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blessed Anthony Etim | Technology Law</title>
+  <meta name="description"
+    content="Blessed Anthony Etim is a law student specializing in Data Privacy, Cybercrime, Blockchain, and AI Governance.">
+  <link rel="stylesheet" href="index.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-anchor-left">
+      <a href="index.html" class="wordmark-anchored">Blessed Anthony Etim</a>
+    </div>
+
+    <nav id="navbar" class="navbar-pill-wrapper">
+      <div class="navbar-pill">
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="articles.html" class="nav-link">Articles</a>
+
+          <div class="nav-dropdown">
+            <a href="research.html" class="nav-link">Research <i data-lucide="chevron-down" style="width: 14px;"></i></a>
+            <div class="dropdown-content">
+              <a href="research.html">AI Governance</a>
+              <a href="research.html">Blockchain Ethics</a>
+              <a href="research.html">Data Privacy Papers</a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <a href="resources.html" class="nav-link">Resources <i data-lucide="chevron-down" style="width: 14px;"></i></a>
+            <div class="dropdown-content">
+              <a href="resources.html">Legal Frameworks</a>
+              <a href="resources.html">International Treaties</a>
+              <a href="resources.html">Policy Documents</a>
+            </div>
+          </div>
+
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="header-anchor-right">
+      <div class="navbar-actions-anchored">
+        <button id="theme-toggle" class="theme-toggle-anchored" aria-label="Toggle dark mode">
+          <i id="theme-icon" data-lucide="moon"></i>
+        </button>
+        <button id="mobile-menu-btn" class="mobile-menu-btn-anchored">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="section hero-section"
+      style="min-height: 100vh; display: flex; align-items: flex-end; background: linear-gradient(to top right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.0) 70%), url('Image/Image-one.jpg'); background-size: cover; background-position: 70% 10%; padding: 0;">
+      <div class="container" style="width: 100%; padding-bottom: 80px; padding-left: 60px; margin: 0; max-width: none;">
+        <div class="hero-content-wrapper hero-entrance">
+          <div class="hero-animated-box" style="min-height: 200px; display: flex; flex-direction: column; justify-content: flex-end;">
+            <h1 class="hero-text-hey" id="hero-title">Hey there!</h1>
+            <div class="typewriter-container" style="min-height: 1.2em; display: flex; align-items: center;">
+              <h2 class="hero-text-name"><span id="typewriter"></span><span class="typewriter-cursor">|</span></h2>
+            </div>
+          </div>
+          <p class="hero-text-desc">
+            I explore the legal frontiers of emerging technology,<br>
+            writing, researching, and advising on how the law<br>
+            adapts to an increasingly digital world.
+          </p>
+          <div style="display: flex; justify-content: flex-start; gap: 16px; flex-wrap: wrap;">
+            <a href="articles.html" class="btn btn-primary">
+              Read My Articles <i data-lucide="arrow-right" style="width: 18px;"></i>
+            </a>
+            <a href="contact.html" class="btn btn-secondary">
+              Get In Touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Areas of Focus -->
+    <section class="section" style="background-color: var(--bg-secondary);">
+      <div class="container">
+        <h2 style="margin-bottom: 40px; text-align: center;">Areas of Focus</h2>
+
+        <div class="grid grid-cols-4 stack-grid">
+          <div class="card stack-card" style="text-align: center;">
+            <div class="icon-box" style="margin: 0 auto 20px;"><i data-lucide="shield"></i></div>
+            <h4 style="margin-bottom: 12px; font-weight: 700;">Data Privacy</h4>
+            <p style="font-size: 15px; opacity: 0.8;">Navigating regulatory compliance and protecting digital rights.
+            </p>
+          </div>
+
+          <div class="card stack-card" style="text-align: center;">
+            <div class="icon-box" style="margin: 0 auto 20px;"><i data-lucide="lock"></i></div>
+            <h4 style="margin-bottom: 12px; font-weight: 700;">Cybercrime</h4>
+            <p style="font-size: 15px; opacity: 0.8;">Analyzing legal frameworks addressing digital offenses and
+              security.</p>
+          </div>
+
+          <div class="card stack-card" style="text-align: center;">
+            <div class="icon-box" style="margin: 0 auto 20px;"><i data-lucide="link"></i></div>
+            <h4 style="margin-bottom: 12px; font-weight: 700;">Blockchain</h4>
+            <p style="font-size: 15px; opacity: 0.8;">Understanding the regulatory landscape of decentralized systems.
+            </p>
+          </div>
+
+          <div class="card stack-card" style="text-align: center;">
+            <div class="icon-box" style="margin: 0 auto 20px;"><i data-lucide="cpu"></i></div>
+            <h4 style="margin-bottom: 12px; font-weight: 700;">AI Governance</h4>
+            <p style="font-size: 15px; opacity: 0.8;">Formulating policies for ethical and accountable artificial
+              intelligence.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Latest Articles -->
+    <section class="section">
+      <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+          <h2>Latest Articles</h2>
+          <a href="articles.html" class="btn btn-ghost">View All <i data-lucide="arrow-right"
+              style="width: 16px;"></i></a>
+        </div>
+
+        <div class="grid grid-cols-3 stack-grid">
+          <div class="card stack-card" data-aos-delay="100">
+            <span class="tag">Data Privacy</span>
+            <p style="font-size: 13px; opacity: 0.6; margin-bottom: 8px;">October 12, 2025</p>
+            <h4 style="margin-bottom: 16px; font-weight: 700;">Understanding Nigeria's Data Protection Act: What It
+              Means for Businesses</h4>
+            <p style="font-size: 15px; opacity: 0.8; margin-bottom: 24px;">An in-depth analysis of the new compliance
+              requirements and how organizations can navigate the evolving privacy landscape.</p>
+            <a href="#" class="btn btn-ghost" style="padding: 0;">Read More <i data-lucide="arrow-right"
+                style="width: 16px;"></i></a>
+          </div>
+
+          <div class="card stack-card" data-aos-delay="200">
+            <span class="tag">Cybercrime</span>
+            <p style="font-size: 13px; opacity: 0.6; margin-bottom: 8px;">September 28, 2025</p>
+            <h4 style="margin-bottom: 16px; font-weight: 700;">The Legal Gaps in Africa's Cybercrime Frameworks</h4>
+            <p style="font-size: 15px; opacity: 0.8; margin-bottom: 24px;">Examining the jurisdictional challenges and
+              outdated legislation hindering effective prosecution of transnational cyber offenses.</p>
+            <a href="#" class="btn btn-ghost" style="padding: 0;">Read More <i data-lucide="arrow-right"
+                style="width: 16px;"></i></a>
+          </div>
+
+          <div class="card stack-card" data-aos-delay="300">
+            <span class="tag">Blockchain</span>
+            <p style="font-size: 13px; opacity: 0.6; margin-bottom: 8px;">September 15, 2025</p>
+            <h4 style="margin-bottom: 16px; font-weight: 700;">Regulating Blockchain: A Nigerian Perspective</h4>
+            <p style="font-size: 15px; opacity: 0.8; margin-bottom: 24px;">Evaluating the Central Bank of Nigeria's
+              policy shifts and the future of digital assets in West Africa's largest economy.</p>
+            <a href="#" class="btn btn-ghost" style="padding: 0;">Read More <i data-lucide="arrow-right"
+                style="width: 16px;"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="wordmark"
+            style="font-size: 20px; display: inline-block; margin-bottom: 16px;">Blessed Anthony Etim</a>
+          <p style="font-size: 14px; opacity: 0.8; max-width: 300px; margin-bottom: 24px;">
+            A modern, credible, tech-forward legal personal brand dedicated to the intersection of law and emerging
+            technologies.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4 style="font-weight: 700; margin-bottom: 16px;">Navigation</h4>
+          <a href="about.html">About</a>
+          <a href="articles.html">Articles</a>
+          <a href="research.html">Research</a>
+          <a href="resources.html">Resources</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4 style="font-weight: 700;">Stay Updated</h4>
+          <p>Get insights on technology law delivered to your inbox.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <input type="email" class="form-input" placeholder="Your email address" required>
+            <button type="submit" class="btn btn-primary" style="padding: 0 16px;">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Blessed Anthony Etim. All rights reserved.</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter" style="width: 20px;"></i></a>
+          <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin" style="width: 20px;"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

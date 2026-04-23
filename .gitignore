@@ -1,0 +1,24 @@
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on VFAT drives
+$RECYCLE.BIN/
+
+# VS Code
+.vscode/
+
+# OS X
+.DS_Store
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Node modules (if any)
+node_modules/
