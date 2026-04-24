@@ -1037,8 +1037,8 @@ h4 {
 
 /* Hero Entrance Animation */
 .hero-entrance {
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1; /* Fallback to visible */
+  transform: translateY(0);
   animation: heroReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: 0.8s;
 }
@@ -1295,8 +1295,8 @@ h4 {
   will-change: transform, opacity;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  clip-path: inset(0 0 100% 0);
-  /* Start with reveal mask hidden from bottom */
+  clip-path: inset(0 0 0% 0); /* Default to visible */
+  opacity: 1;
 }
 
 .glass-stack {
