@@ -1076,21 +1076,27 @@ h4 {
   .hero-section {
     background-position: 65% top !important;
     background-size: cover !important;
-    background-image: 
-      linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%),
+    /* Stronger gradient for text readability over the face */
+    background-image:
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.35) 0%,
+        rgba(0, 0, 0, 0.25) 35%,
+        rgba(0, 0, 0, 0.72) 70%,
+        rgba(0, 0, 0, 0.88) 100%
+      ),
       url('Image/image-one.jpg') !important;
-    min-height: 100vh;
-    display: flex;
-    align-items: center; /* Back to centered/standard vertical alignment */
+    /* Push content to bottom so face shows above text */
+    align-items: flex-end !important;
+    min-height: 100svh;
   }
 
-  /* 2. Container padding */
+  /* 2. Container padding — symmetric, no left bias */
   .hero-section .container {
     padding-left: 20px !important;
     padding-right: 20px !important;
-    padding-bottom: 40px !important;
+    padding-bottom: 56px !important;
     width: 100% !important;
-    max-width: none !important;
   }
 
   /* 3. Content wrapper — full width, left aligned */
@@ -1177,20 +1183,20 @@ h4 {
   .mobile-nav-panel {
     display: none;
     position: fixed;
-    top: 68px;
-    right: 12px;
+    top: 70px;
+    right: 14px;
     left: auto;
-    width: 190px;
-    background-color: rgba(255, 255, 255, 0.05);
+    width: 200px; /* Ultra-Compact */
+    background-color: rgba(255, 255, 255, 0.05); /* Phantom Transparency */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 0.5px solid rgba(255, 255, 255, 0.1);
     border-radius: 18px;
     padding: 6px;
-    z-index: 998;
+    z-index: 1100;
     flex-direction: column;
     gap: 0;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
     transform-origin: top right;
   }
 
@@ -1198,53 +1204,50 @@ h4 {
     display: flex;
   }
 
-  [data-theme="light"] .mobile-nav-panel {
+  /* Adaptive Contrast Logic for Menu Card */
+  [data-theme="light"] .mobile-nav-panel.nav-light-bg {
     background-color: rgba(255, 255, 255, 0.4);
-    border-color: rgba(0, 0, 0, 0.05);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   }
 
+  /* Menu Links - Adaptive Contrast */
   .mobile-nav-panel a {
     display: block;
-    color: #FFFFFF;
+    color: rgba(255, 255, 255, 0.85); /* Default white for dark bg */
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    padding: 8px 12px;
+    padding: 10px 14px;
     border-radius: 12px;
     font-family: var(--font-primary);
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     letter-spacing: -0.01em;
   }
 
-  /* Adaptive Text Color for inactive links */
-  .mobile-nav-panel.nav-dark-mode a {
-    color: #1A1513;
+  /* Dark Background State (Hero) */
+  .mobile-nav-panel a.active {
+    background-color: var(--accent-color); /* Brown/Tan */
+    color: #FFFFFF !important;
   }
 
-  [data-theme="light"] .mobile-nav-panel a {
-    color: #1A1513;
+  /* Light Background State */
+  .mobile-nav-panel.nav-light-bg a {
+    color: rgba(0, 0, 0, 0.75); /* Dark for light bg */
+  }
+
+  .mobile-nav-panel.nav-light-bg a.active {
+    background-color: #1A1513; /* Dark Slate / Black */
+    color: #FFFFFF !important;
   }
 
   .mobile-nav-panel a:hover {
     background-color: rgba(255, 255, 255, 0.08);
-    padding-left: 16px;
+    padding-left: 18px;
   }
 
-  /* Active Pill Logic */
-  .mobile-nav-panel a.active {
-    background-color: var(--accent-color) !important; /* Brown/Tan over dark sections */
-    color: #FFFFFF !important;
-    padding-left: 16px;
-  }
-
-  .mobile-nav-panel.nav-dark-mode a.active {
-    background-color: #1A1513 !important; /* Dark Slate over light sections */
-    color: #FFFFFF !important;
-  }
-
-  [data-theme="light"] .mobile-nav-panel a:hover {
-    background-color: rgba(0, 0, 0, 0.03);
+  .mobile-nav-panel.nav-light-bg a:hover {
+    background-color: rgba(0, 0, 0, 0.04);
   }
 
   .mobile-nav-divider {

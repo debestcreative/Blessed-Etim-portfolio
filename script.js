@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.getElementById('theme-toggle');
   const themeIcon = document.getElementById('theme-icon');
 
+  // Check local storage or system preference
   const savedTheme = localStorage.getItem('theme');
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeIcon) themeIcon.setAttribute('data-lucide', 'moon');
   }
 
+  // Re-initialize icons if changed
   lucide.createIcons();
 
   if (themeToggle) {
@@ -37,13 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Active Link State
   const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-panel a');
+  const navLinks = document.querySelectorAll('.nav-link');
 
   navLinks.forEach(link => {
+    // Basic check for active link based on href vs path
     const linkPath = link.getAttribute('href');
-    if (linkPath === 'index.html' && (currentPath === '/' || currentPath.endsWith('index.html'))) {
+    if (linkPath === '/' && (currentPath === '/' || currentPath.endsWith('index.html'))) {
       link.classList.add('active');
-    } else if (linkPath !== 'index.html' && currentPath.includes(linkPath)) {
+    } else if (linkPath !== '/' && currentPath.includes(linkPath.replace('.html', ''))) {
       link.classList.add('active');
     }
   });
@@ -65,141 +68,416 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   requestAnimationFrame(raf);
 
+  // Trackpad / High-frequency device detection
+  window.addEventListener('wheel', (e) => {
+    // Trackpads usually emit many small delta events. 
+    // Increase lerp for immediate response on trackpads.
+    if (Math.abs(e.deltaY) < 10) {
+      lenis.options.lerp = 0.25;
+    } else {
+      lenis.options.lerp = 0.1;
+    }
+  }, { passive: true });
+
   // Register GSAP ScrollTrigger and TextPlugin
   gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-  // --- Hero Typewriter Effect (Home Page Only) ---
+  // --- Hero Typewriter Effect (Context-Switch Logic) ---
   const typewriterElement = document.getElementById('typewriter');
   const heroTitle = document.getElementById('hero-title');
   
   if (typewriterElement && heroTitle) {
     const mainTimeline = gsap.timeline({ repeat: -1 });
+
+    // Helper function for typing/pausing/deleting
     const typeSequence = (text, pause) => {
       const typeDur = text.length * 0.08;
       mainTimeline
-        .to(typewriterElement, { duration: typeDur, text: text, ease: "none" })
+        .to(typewriterElement, {
+          duration: typeDur,
+          text: text,
+          ease: "none"
+        })
         .to({}, { duration: pause })
-        .to(typewriterElement, { duration: typeDur * 0.4, text: "", ease: "none" });
+        .to(typewriterElement, {
+          duration: typeDur * 0.4,
+          text: "",
+          ease: "none"
+        });
     };
 
+    // Helper for title switch
     const switchTitle = (newText) => {
       mainTimeline.to(heroTitle, {
-        opacity: 0, y: -15, duration: 0.4, ease: "power2.inOut",
+        opacity: 0,
+        y: -15,
+        duration: 0.4,
+        ease: "power2.inOut",
         onComplete: () => { heroTitle.textContent = newText; }
       })
-      .to(heroTitle, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
+      .to(heroTitle, {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power2.out"
+      });
     };
 
+    // Stage 1: The Intro
     mainTimeline.set(heroTitle, { textContent: "Hey there!" });
     typeSequence("I'm Blessed...", 2);
+
+    // Stage 2: The Identity
     switchTitle("A Nigerian");
     typeSequence("Law Student", 2);
+
+    // Stage 3: The Specialization
     switchTitle("Specializing in:");
-    ["Data Privacy", "Compliance", "Cybercrime", "Blockchain", "AI Governance"].forEach(n = > typeSequence(n, 1.5));
+    const niches = ["Data Privacy", "Compliance", "Cybercrime", "Blockchain", "AI Governance"];
+    niches.forEach(niche => {
+      typeSequence(niche, 1.5);
+    });
+
+    // The Reset
     switchTitle("Hey there!");
   }
 
   // Sync GSAP with Lenis
   lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000);
+  });
+
   gsap.ticker.lagSmoothing(0);
 
-  // Card Animation Logic
+  // Stacked to Spread Animation (Scroll-Driven)
   const stackGrids = document.querySelectorAll('.stack-grid');
+
   stackGrids.forEach((grid) => {
     const cards = grid.querySelectorAll('.stack-card');
-    if (cards.length === 0) return;
+
+    // Initial Stacked State
     gsap.set(cards, {
-      y: 150, scale: 0.85, opacity: 0, clipPath: "inset(0 0 100% 0)", zIndex: (i) => cards.length - i
+      y: 150,
+      x: (i) => (i - (cards.length - 1) / 2) * -30, // Clustered in center
+      rotationX: -15,
+      rotationZ: (i) => (i - (cards.length - 1) / 2) * 5, // Subtle fan
+      scale: 0.85,
+      opacity: 0,
+      clipPath: "inset(0 0 100% 0)",
+      zIndex: (i) => cards.length - i
     });
-    gsap.timeline({
-      scrollTrigger: { trigger: grid, start: "top 90%", end: "top 40%", scrub: 1.5 }
-    }).to(cards, {
-      y: 0, scale: 1, opacity: 1, clipPath: "inset(0 0 0% 0)", stagger: 0.15, ease: "power2.out"
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: grid,
+        start: "top 90%",
+        end: "top 40%",
+        scrub: 1.5, // High-end smoothing
+      }
+    });
+
+    tl.to(cards, {
+      y: 0,
+      x: 0,
+      rotationX: 0,
+      rotationZ: 0,
+      scale: 1,
+      opacity: 1,
+      clipPath: "inset(0 0 0% 0)",
+      stagger: 0.15,
+      ease: "power2.out"
     });
   });
 
-  // AOS Init
-  AOS.init({ duration: 1000, once: true, offset: 100, easing: 'ease-out-back' });
+  // 3D Tilt Effect (Mouse Interactive)
+  const allCards = document.querySelectorAll('.card');
+  allCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Update spotlight position variables
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      // Calculate rotation based on cursor distance from center
+      const rotateX = (y - centerY) / 15;
+      const rotateY = (centerX - x) / 15;
+
+      gsap.to(card, {
+        rotateX: rotateX,
+        rotateY: rotateY,
+        scale: 1.02,
+        duration: 0.4,
+        ease: "power2.out",
+        overwrite: "auto"
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        rotateX: 0,
+        rotateY: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: "power3.out",
+        overwrite: "auto"
+      });
+    });
+  });
+
+  // Legal-Tech Evolution Timeline
+  const timelineSection = document.getElementById('timeline-section');
+  if (timelineSection) {
+    const line = timelineSection.querySelector('.timeline-line-inner');
+    const milestones = timelineSection.querySelectorAll('.milestone-card');
+
+    if (line) {
+      gsap.to(line, {
+        scaleY: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: timelineSection,
+          start: "top 70%",
+          end: "bottom 80%",
+          scrub: true
+        }
+      });
+    }
+
+    milestones.forEach((milestone, i) => {
+      gsap.from(milestone, {
+        opacity: 0,
+        x: i % 2 === 0 ? -50 : 50,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: milestone,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+  }
+
+  // Initialize AOS
+  AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100,
+    easing: 'ease-out-back'
+  });
+
+  // Refresh ScrollTrigger to ensure all positions are correct
   ScrollTrigger.refresh();
 
-  // Parallax
+  // Hero Parallax Effect (desktop only — mobile uses fixed background-position)
   const heroSection = document.querySelector('.hero-section');
   if (heroSection) {
     lenis.on('scroll', (e) => {
+      // Skip parallax on mobile to preserve the focal-point background-position
       if (window.innerWidth <= 768) return;
-      heroSection.style.backgroundPosition = `70% calc(10% + ${e.scroll * 0.15}px)`;
+      const scrollY = e.scroll;
+      heroSection.style.backgroundPosition = `70% calc(10% + ${scrollY * 0.15}px)`;
     });
   }
 
   // --- Context-Aware Navbar Logic ---
   const header = document.querySelector('.site-header');
   const sections = document.querySelectorAll('section');
-  const mobileNavPanel = document.getElementById('mobile-nav-panel');
+  const wordmark = document.querySelector('.wordmark-anchored');
+  const actions = document.querySelector('.navbar-actions-anchored');
 
   const updateNavState = () => {
     if (!header) return;
     const isLightTheme = document.documentElement.getAttribute('data-theme') === 'light';
     const hero = document.querySelector('.hero-section');
+    const mobilePanel = document.getElementById('mobile-nav-panel');
     
-    const setNavDark = (isDark) => {
-      if (isDark) {
+    // 1. Force state for sub-pages (About, Contact, etc.)
+    if (!hero) {
+      if (isLightTheme) {
         header.classList.add('nav-dark-mode');
-        if (mobileNavPanel) mobileNavPanel.classList.add('nav-dark-mode');
+        if (mobilePanel) mobilePanel.classList.add('nav-light-bg');
       } else {
         header.classList.remove('nav-dark-mode');
-        if (mobileNavPanel) mobileNavPanel.classList.remove('nav-dark-mode');
+        if (mobilePanel) mobilePanel.classList.remove('nav-light-bg');
       }
-    };
-
-    if (!hero) {
-      setNavDark(isLightTheme);
-      return;
+      return; 
     }
 
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const isDarkSection = entry.target.classList.contains('hero-section') || entry.target.classList.contains('dark-section');
-          setNavDark(!isDarkSection && isLightTheme);
-        }
+    // 2. Dynamic logic for Home Page (Hero + Sections)
+    if (sections.length > 0) {
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const isDarkSection = entry.target.classList.contains('hero-section') || entry.target.classList.contains('dark-section');
+            if (!isDarkSection && isLightTheme) {
+              header.classList.add('nav-dark-mode');
+              if (mobilePanel) mobilePanel.classList.add('nav-light-bg');
+            } else {
+              header.classList.remove('nav-dark-mode');
+              if (mobilePanel) mobilePanel.classList.remove('nav-light-bg');
+            }
+          }
+        });
+      }, {
+        rootMargin: '-10px 0px -90% 0px',
+        threshold: 0
       });
-    }, { rootMargin: '-10px 0px -90% 0px', threshold: 0 });
 
-    sections.forEach(section => navObserver.observe(section));
+      sections.forEach(section => navObserver.observe(section));
+    }
   };
 
   updateNavState();
-  window.addEventListener('scroll', updateNavState);
-  if (themeToggle) themeToggle.addEventListener('click', () => setTimeout(updateNavState, 10));
 
-  // Mobile Menu Logic
+  // Re-run logic when theme changes or on scroll for extra safety
+  window.addEventListener('scroll', updateNavState);
+  
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      setTimeout(updateNavState, 10);
+    });
+  }
+
+  // Handle subtle interaction on scroll
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    if (scrollY > 50) {
+      if (wordmark) wordmark.style.opacity = '0.8';
+      if (actions) actions.style.opacity = '0.8';
+    } else {
+      if (wordmark) wordmark.style.opacity = '1';
+      if (actions) actions.style.opacity = '1';
+    }
+  });
+
+  // --- Slim Click-to-Toggle Dropdowns ---
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  
+  dropdowns.forEach(dropdown => {
+    const trigger = dropdown.querySelector('.nav-link');
+    const content = dropdown.querySelector('.dropdown-content');
+    const links = content.querySelectorAll('a');
+
+    if (trigger && content) {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isActive = dropdown.classList.contains('active');
+
+        // Close all other dropdowns
+        dropdowns.forEach(d => {
+          if (d !== dropdown && d.classList.contains('active')) {
+            d.classList.remove('active');
+            gsap.to(d.querySelector('.dropdown-content'), { 
+              opacity: 0, 
+              y: 10, 
+              visibility: 'hidden', 
+              duration: 0.3,
+              ease: "power2.in"
+            });
+          }
+        });
+
+        if (!isActive) {
+          dropdown.classList.add('active');
+          gsap.killTweensOf([content, links]);
+          gsap.fromTo(content, 
+            { opacity: 0, y: 10, visibility: 'hidden' },
+            { opacity: 1, y: 0, visibility: 'visible', duration: 0.3, ease: "power2.out" }
+          );
+          gsap.fromTo(links, 
+            { opacity: 0, y: 5 },
+            { opacity: 1, y: 0, duration: 0.2, stagger: 0.03, ease: "power1.out", delay: 0.1 }
+          );
+        } else {
+          dropdown.classList.remove('active');
+          gsap.to(content, { 
+            opacity: 0, 
+            y: 10, 
+            visibility: 'hidden', 
+            duration: 0.3, 
+            ease: "power2.in" 
+          });
+        }
+      });
+    }
+  });
+
+  // Global click to close dropdowns
+  window.addEventListener('click', () => {
+    dropdowns.forEach(d => {
+      if (d.classList.contains('active')) {
+        d.classList.remove('active');
+        gsap.to(d.querySelector('.dropdown-content'), { 
+          opacity: 0, 
+          y: 10, 
+          visibility: 'hidden', 
+          duration: 0.3,
+          ease: "power2.in"
+        });
+      }
+    });
+  });
+
+  // Mobile Menu Toggle — redesigned floating card with GSAP
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileNavPanel = document.getElementById('mobile-nav-panel');
+
   if (mobileMenuBtn && mobileNavPanel) {
     const toggleMenu = (open) => {
       const icon = mobileMenuBtn.querySelector('i');
       if (open) {
         mobileNavPanel.style.display = 'flex';
         mobileNavPanel.classList.add('mobile-active');
-        gsap.fromTo(mobileNavPanel, { opacity: 0, scale: 0.9, y: -20, transformOrigin: 'top right' }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "power2.out" });
+        gsap.fromTo(mobileNavPanel, 
+          { opacity: 0, scale: 0.95, y: -10, transformOrigin: 'top right' },
+          { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "power2.out" }
+        );
         if (icon) { icon.setAttribute('data-lucide', 'x'); lucide.createIcons(); }
       } else {
-        gsap.to(mobileNavPanel, { opacity: 0, scale: 0.9, y: -20, duration: 0.3, ease: "power2.in", onComplete: () => {
-          mobileNavPanel.classList.remove('mobile-active');
-          mobileNavPanel.style.display = 'none';
-        }});
+        gsap.to(mobileNavPanel, {
+          opacity: 0,
+          scale: 0.95,
+          y: -10,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => {
+            mobileNavPanel.classList.remove('mobile-active');
+            mobileNavPanel.style.display = 'none';
+          }
+        });
         if (icon) { icon.setAttribute('data-lucide', 'menu'); lucide.createIcons(); }
       }
     };
 
     mobileMenuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-      toggleMenu(!mobileNavPanel.classList.contains('mobile-active'));
+      const isOpen = mobileNavPanel.classList.contains('mobile-active');
+      toggleMenu(!isOpen);
     });
 
-    mobileNavPanel.querySelectorAll('a').forEach(link => link.addEventListener('click', () => toggleMenu(false)));
+    // Close panel when a nav link is tapped
+    mobileNavPanel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggleMenu(false);
+      });
+    });
+
+    // Close panel on outside tap
     document.addEventListener('click', (e) => {
-      if (mobileNavPanel.classList.contains('mobile-active') && !mobileNavPanel.contains(e.target) && !mobileMenuBtn.contains(e.target)) toggleMenu(false);
+      if (mobileNavPanel.classList.contains('mobile-active') && !mobileNavPanel.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        toggleMenu(false);
+      }
     });
   }
 });
