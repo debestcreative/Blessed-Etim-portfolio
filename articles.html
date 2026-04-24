@@ -9,24 +9,6 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <style>
-    /* Emergency Fallback: ONLY active if a script crash is detected */
-    .js-error .hero-content-wrapper, 
-    .js-error .stack-card, 
-    .js-error .section { 
-      opacity: 1 !important; 
-      visibility: visible !important; 
-      transform: none !important; 
-      clip-path: none !important; 
-    }
-  </style>
-  <script>
-    // Diagnostic / Error Tracker
-    window.addEventListener('error', function(e) {
-      console.warn('Site Diagnostic Error:', e.message);
-      document.documentElement.classList.add('js-error');
-    });
-  </script>
 </head>
 <body>
   
@@ -68,28 +50,14 @@
     <div class="header-anchor-right">
       <div class="navbar-actions-anchored">
         <button id="theme-toggle" class="theme-toggle-anchored" aria-label="Toggle dark mode">
-          <!-- Inlined SVG Fallback -->
-          <svg id="theme-icon-svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+          <i id="theme-icon" data-lucide="moon"></i>
         </button>
         <button id="mobile-menu-btn" class="mobile-menu-btn-anchored">
-          <!-- Inlined SVG Fallback -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+          <i data-lucide="menu"></i>
         </button>
       </div>
     </div>
   </header>
-
-  <!-- Mobile Navigation Panel (hamburger target) -->
-  <nav class="mobile-nav-panel" id="mobile-nav-panel" aria-label="Mobile navigation">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="articles.html" class="active">Articles</a>
-    <div class="mobile-nav-divider"></div>
-    <a href="research.html">Research</a>
-    <a href="resources.html">Resources</a>
-    <div class="mobile-nav-divider"></div>
-    <a href="contact.html">Contact</a>
-  </nav>
 
   <main>
     <section class="section">
