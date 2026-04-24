@@ -1114,13 +1114,15 @@ h4 {
 
   /* 5. Font sizes */
   .hero-text-hey {
-    font-size: 44px;
+    font-size: 52px;
     letter-spacing: -0.03em;
+    white-space: nowrap;
   }
 
   .hero-text-name {
-    font-size: 58px;
+    font-size: 72px;
     letter-spacing: -0.04em;
+    white-space: nowrap;
   }
 
   .hero-text-role {
