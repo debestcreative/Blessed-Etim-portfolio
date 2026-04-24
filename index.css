@@ -1101,7 +1101,7 @@ h4 {
 
   /* 1. Background: mobile specific positioning and gradient */
   .hero-section {
-    background-position: 75% center !important;
+    background-position: right center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.0) 70%), url('image-one.jpg') !important;
