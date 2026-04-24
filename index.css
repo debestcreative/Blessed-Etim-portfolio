@@ -1134,11 +1134,18 @@ h4 {
     text-align: left;
   }
 
-  /* 6. Button container — side by side, left-aligned */
+  /* 6. Button container — side by side, one line */
   .hero-btn-group {
     justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 12px;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .hero-btn-group .btn {
+    padding: 0 16px;
+    font-size: 13px;
+    height: 44px;
+    white-space: nowrap;
   }
 
   /* Typewriter container left-aligned */
