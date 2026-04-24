@@ -417,11 +417,13 @@ h4 {
   z-index: 1002;
   display: flex;
   align-items: center;
-  height: 44px; /* Matching the height of the toggles/pill area */
+  height: 44px;
+  /* Matching the height of the toggles/pill area */
 }
 
 .site-header.nav-dark-mode .wordmark-anchored {
-  color: #1A1513; /* Sophisticated dark/black color */
+  color: #1A1513;
+  /* Sophisticated dark/black color */
   background-color: transparent;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
@@ -470,11 +472,13 @@ h4 {
   -webkit-backdrop-filter: blur(20px);
 }
 
-.theme-toggle-anchored i, .mobile-menu-btn-anchored i {
+.theme-toggle-anchored i,
+.mobile-menu-btn-anchored i {
   color: inherit;
 }
 
-.theme-toggle-anchored:hover, .mobile-menu-btn-anchored:hover {
+.theme-toggle-anchored:hover,
+.mobile-menu-btn-anchored:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -489,10 +493,13 @@ h4 {
 }
 
 .navbar-pill {
-  background-color: rgba(255, 255, 255, 0.05); /* Frosted transparency */
-  backdrop-filter: blur(30px); /* Heavy sophisticated blur */
+  background-color: rgba(255, 255, 255, 0.05);
+  /* Frosted transparency */
+  backdrop-filter: blur(30px);
+  /* Heavy sophisticated blur */
   -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.1); /* Definitive thin border */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* Definitive thin border */
   border-radius: 100px;
   padding: 6px 8px;
   display: flex;
@@ -526,7 +533,8 @@ h4 {
   gap: 4px;
 }
 
-.nav-link i, .nav-link svg {
+.nav-link i,
+.nav-link svg {
   color: inherit;
 }
 
@@ -636,6 +644,7 @@ h4 {
 }
 
 @media (max-width: 768px) {
+
   /* --- Header & Pill --- */
   .site-header {
     padding: 0 20px;
@@ -667,13 +676,13 @@ h4 {
     background-color: rgba(20, 16, 14, 0.97);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 16px;
     z-index: 999;
     flex-direction: column;
     gap: 4px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   }
 
   .mobile-nav-panel.mobile-active {
@@ -682,7 +691,7 @@ h4 {
 
   [data-theme="light"] .mobile-nav-panel {
     background-color: rgba(255, 255, 255, 0.97);
-    border-color: rgba(0,0,0,0.08);
+    border-color: rgba(0, 0, 0, 0.08);
   }
 
   .mobile-nav-panel a {
@@ -703,12 +712,12 @@ h4 {
 
   .mobile-nav-panel a:hover,
   .mobile-nav-panel a.active {
-    background-color: rgba(255,255,255,0.08);
+    background-color: rgba(255, 255, 255, 0.08);
   }
 
   [data-theme="light"] .mobile-nav-panel a:hover,
   [data-theme="light"] .mobile-nav-panel a.active {
-    background-color: rgba(0,0,0,0.05);
+    background-color: rgba(0, 0, 0, 0.05);
   }
 
   .mobile-nav-panel a.active {
@@ -718,12 +727,12 @@ h4 {
 
   .mobile-nav-panel .mobile-nav-divider {
     height: 1px;
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
     margin: 4px 0;
   }
 
   [data-theme="light"] .mobile-nav-panel .mobile-nav-divider {
-    background: rgba(0,0,0,0.08);
+    background: rgba(0, 0, 0, 0.08);
   }
 }
 
@@ -1037,7 +1046,8 @@ h4 {
 
 /* Hero Entrance Animation */
 .hero-entrance {
-  opacity: 1; /* Fallback to visible */
+  opacity: 1;
+  /* Fallback to visible */
   transform: translateY(0);
   animation: heroReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: 0.8s;
@@ -1065,8 +1075,13 @@ h4 {
 
 /* --- Tablet (≤ 1024px) --- */
 @media (max-width: 1024px) {
-  .hero-text-hey  { font-size: 60px; }
-  .hero-text-name { font-size: 80px; }
+  .hero-text-hey {
+    font-size: 60px;
+  }
+
+  .hero-text-name {
+    font-size: 80px;
+  }
 }
 
 /* --- Mobile (≤ 768px) --- */
@@ -1079,13 +1094,11 @@ h4 {
     background-repeat: no-repeat !important;
     /* Stronger gradient for text readability over the face */
     background-image:
-      linear-gradient(
-        to bottom,
+      linear-gradient(to bottom,
         rgba(0, 0, 0, 0.35) 0%,
         rgba(0, 0, 0, 0.25) 35%,
         rgba(0, 0, 0, 0.72) 70%,
-        rgba(0, 0, 0, 0.88) 100%
-      ),
+        rgba(0, 0, 0, 0.88) 100%),
       url('Image/image-one.jpg') !important;
     /* Push content to bottom so face shows above text */
     align-items: flex-end !important;
@@ -1176,7 +1189,8 @@ h4 {
   .wordmark-anchored {
     font-size: 15px;
     letter-spacing: -0.02em;
-    max-width: calc(100vw - 120px); /* prevents overlap with right icons */
+    max-width: calc(100vw - 120px);
+    /* prevents overlap with right icons */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1189,8 +1203,10 @@ h4 {
     top: 70px;
     right: 14px;
     left: auto;
-    width: 200px; /* Ultra-Compact */
-    background-color: rgba(255, 255, 255, 0.05); /* Phantom Transparency */
+    width: 200px;
+    /* Ultra-Compact */
+    background-color: rgba(255, 255, 255, 0.05);
+    /* Phantom Transparency */
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 0.5px solid rgba(255, 255, 255, 0.1);
@@ -1217,7 +1233,8 @@ h4 {
   /* Menu Links - Adaptive Contrast */
   .mobile-nav-panel a {
     display: block;
-    color: rgba(255, 255, 255, 0.85); /* Default white for dark bg */
+    color: rgba(255, 255, 255, 0.85);
+    /* Default white for dark bg */
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -1230,17 +1247,20 @@ h4 {
 
   /* Dark Background State (Hero) */
   .mobile-nav-panel a.active {
-    background-color: var(--accent-color); /* Brown/Tan */
+    background-color: var(--accent-color);
+    /* Brown/Tan */
     color: #FFFFFF !important;
   }
 
   /* Light Background State */
   .mobile-nav-panel.nav-light-bg a {
-    color: rgba(0, 0, 0, 0.75); /* Dark for light bg */
+    color: rgba(0, 0, 0, 0.75);
+    /* Dark for light bg */
   }
 
   .mobile-nav-panel.nav-light-bg a.active {
-    background-color: #1A1513; /* Dark Slate / Black */
+    background-color: #1A1513;
+    /* Dark Slate / Black */
     color: #FFFFFF !important;
   }
 
@@ -1260,9 +1280,17 @@ h4 {
 
 /* --- Extra-small phones (≤ 480px) --- */
 @media (max-width: 480px) {
-  .hero-text-hey  { font-size: 32px; }
-  .hero-text-name { font-size: 42px; }
-  .hero-text-desc { font-size: 14px; }
+  .hero-text-hey {
+    font-size: 32px;
+  }
+
+  .hero-text-name {
+    font-size: 42px;
+  }
+
+  .hero-text-desc {
+    font-size: 14px;
+  }
 
   .site-header {
     padding: 0 14px;
@@ -1298,7 +1326,8 @@ h4 {
   will-change: transform, opacity;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  clip-path: inset(0 0 0% 0); /* Default to visible */
+  clip-path: inset(0 0 0% 0);
+  /* Default to visible */
   opacity: 1;
 }
 
