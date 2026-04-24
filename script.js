@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  });
+
   // --- 3. Active Link State ---
   const currentPath = window.location.pathname;
   const navLinks = document.querySelectorAll('.nav-link');
@@ -56,7 +58,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // --- 4. Animation Initialization (GSAP / Lenis / AOS) ---
+  // --- 4. Desktop Dropdown Logic (Split Click) ---
+  const dropdowns = document.querySelectorAll('.nav-dropdown');
+  dropdowns.forEach(dropdown => {
+    const link = dropdown.querySelector('.nav-link');
+    if (link) {
+      link.addEventListener('click', (e) => {
+        // If clicking the icon (chevron), toggle dropdown and prevent navigation
+        if (e.target.closest('svg') || e.target.closest('[data-lucide="chevron-down"]')) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          // Close other dropdowns
+          dropdowns.forEach(d => {
+            if (d !== dropdown) d.classList.remove('active');
+          });
+          
+          dropdown.classList.toggle('active');
+        }
+        // If clicking the text itself, let the default navigation happen
+      });
+    }
+  });
+
+  // Global click to close dropdowns
+  window.addEventListener('click', (e) => {
+    dropdowns.forEach(d => {
+      if (d.classList.contains('active') && !d.contains(e.target)) {
+        d.classList.remove('active');
+      }
+    });
+  });
+
+  // --- 5. Animation Initialization (GSAP / Lenis / AOS) ---
   
   // Initialize Lenis Smooth Scroll safely
   let lenis;
