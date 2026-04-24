@@ -29,7 +29,8 @@
           <a href="articles.html" class="nav-link">Articles</a>
 
           <div class="nav-dropdown">
-            <a href="research.html" class="nav-link">Research <i data-lucide="chevron-down" style="width: 14px;"></i></a>
+            <a href="research.html" class="nav-link">Research <i data-lucide="chevron-down"
+                style="width: 14px;"></i></a>
             <div class="dropdown-content">
               <a href="research.html">AI Governance</a>
               <a href="research.html">Blockchain Ethics</a>
@@ -38,7 +39,8 @@
           </div>
 
           <div class="nav-dropdown">
-            <a href="resources.html" class="nav-link">Resources <i data-lucide="chevron-down" style="width: 14px;"></i></a>
+            <a href="resources.html" class="nav-link">Resources <i data-lucide="chevron-down"
+                style="width: 14px;"></i></a>
             <div class="dropdown-content">
               <a href="resources.html">Legal Frameworks</a>
               <a href="resources.html">International Treaties</a>
@@ -63,24 +65,36 @@
     </div>
   </header>
 
+  <!-- Mobile Navigation Panel (hamburger target) -->
+  <nav class="mobile-nav-panel" id="mobile-nav-panel" aria-label="Mobile navigation">
+    <a href="index.html" class="active">Home</a>
+    <a href="about.html">About</a>
+    <a href="articles.html">Articles</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="research.html">Research</a>
+    <a href="resources.html">Resources</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="contact.html">Contact</a>
+  </nav>
+
   <main>
     <!-- Hero Section -->
     <section class="section hero-section"
-      style="min-height: 100vh; display: flex; align-items: flex-end; background: linear-gradient(to top right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.0) 70%), url('Image-one.jpg'); background-size: cover; background-position: 70% 10%; padding: 0;">
+      style="min-height: 100vh; display: flex; align-items: flex-end; background: linear-gradient(to top right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.0) 70%), url('Image/image-one.jpg'); background-size: cover; background-position: 70% 10%; padding: 0;">
       <div class="container" style="width: 100%; padding-bottom: 80px; padding-left: 60px; margin: 0; max-width: none;">
         <div class="hero-content-wrapper hero-entrance">
-          <div class="hero-animated-box" style="min-height: 200px; display: flex; flex-direction: column; justify-content: flex-end;">
+          <div class="hero-animated-box"
+            style="min-height: 200px; display: flex; flex-direction: column; justify-content: flex-end;">
             <h1 class="hero-text-hey" id="hero-title">Hey there!</h1>
             <div class="typewriter-container" style="min-height: 1.2em; display: flex; align-items: center;">
               <h2 class="hero-text-name"><span id="typewriter"></span><span class="typewriter-cursor">|</span></h2>
             </div>
           </div>
           <p class="hero-text-desc">
-            I explore the legal frontiers of emerging technology,<br>
-            writing, researching, and advising on how the law<br>
+            I explore the legal frontiers of emerging technology, writing, researching, and advising on how the law
             adapts to an increasingly digital world.
           </p>
-          <div style="display: flex; justify-content: flex-start; gap: 16px; flex-wrap: wrap;">
+          <div class="hero-btn-group" style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
             <a href="articles.html" class="btn btn-primary">
               Read My Articles <i data-lucide="arrow-right" style="width: 18px;"></i>
             </a>
