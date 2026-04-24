@@ -156,7 +156,7 @@ h4 {
   align-items: flex-end;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.0) 100%), url('image-one.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   background-repeat: no-repeat;
   padding: 0;
   color: var(--hero-text);
@@ -349,14 +349,26 @@ h4 {
   }
 }
 
-/* Hero specific buttons */
+/* Hero specific buttons (Desktop Only) */
+@media (min-width: 769px) {
+  .hero-section .btn {
+    padding: 12px 32px;
+    height: auto;
+    letter-spacing: 0.03rem;
+    gap: 12px;
+  }
+
+  .hero-section .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--hero-text);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+  }
+}
+
 .hero-section .btn-secondary {
   color: var(--hero-text);
   border-color: var(--hero-text);
-}
-
-.hero-section .btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .btn-ghost {
@@ -966,7 +978,7 @@ h4 {
 
 /* Hero Section Responsive Styles */
 .hero-content-wrapper {
-  max-width: 600px;
+  max-width: 800px;
   text-align: left;
 }
 
@@ -977,7 +989,7 @@ h4 {
   font-size: 52px;
   line-height: 1.0;
   margin-bottom: 0;
-  letter-spacing: -0.04em;
+  letter-spacing: 0.05rem;
 }
 
 .hero-text-name {
@@ -988,7 +1000,7 @@ h4 {
   font-style: normal;
   line-height: 1.0;
   margin-bottom: 16px;
-  letter-spacing: -0.05em;
+  letter-spacing: 0.05rem;
   display: inline-flex;
   align-items: center;
 }
@@ -1027,23 +1039,33 @@ h4 {
   font-family: 'Creato Display', 'DM Sans', sans-serif;
   font-weight: 300;
   color: #E8E8E8;
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: 18px;
+  line-height: 1.6;
   margin-bottom: 32px;
-  max-width: 420px;
-  letter-spacing: -0.01em;
+  max-width: 480px;
+  letter-spacing: 0.02rem;
 }
 
 /* Hero Entrance Animation */
-.hero-entrance {
-  opacity: 1;
-  /* Fallback to visible */
-  transform: translateY(0);
-  animation: heroReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: 0.8s;
+/* Hero Entrance Animation (Desktop Only) */
+@media (min-width: 769px) {
+  .hero-entrance {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.4s;
+  }
 }
 
-@keyframes heroReveal {
+/* Fallback/Default for Mobile */
+@media (max-width: 768px) {
+  .hero-entrance {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1137,6 +1159,7 @@ h4 {
     line-height: 1.6;
     max-width: 100%;
     text-align: left;
+    letter-spacing: -0.01em;
   }
 
   /* 6. Button container — side by side, one line */
