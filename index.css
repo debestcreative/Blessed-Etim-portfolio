@@ -1101,7 +1101,7 @@ h4 {
 
   /* 1. Background: mobile specific positioning and gradient */
   .hero-section {
-    background-position: 10% center !important;
+    background-position: right center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.0) 70%), url('image-one.jpg') !important;
@@ -1133,7 +1133,7 @@ h4 {
 
   /* 5. Font sizes */
   .hero-text-hey {
-    font-size: 40px;
+    font-size: 36px;
     line-height: 1.1;
     margin-bottom: 4px;
     letter-spacing: -0.04em;
@@ -1141,7 +1141,7 @@ h4 {
   }
 
   .hero-text-name {
-    font-size: 56px;
+    font-size: 52px;
     line-height: 1.0;
     margin-bottom: 0;
     letter-spacing: -0.05em;
@@ -1156,7 +1156,7 @@ h4 {
   }
 
   .hero-text-desc {
-    font-size: 15px;
+    font-size: 13px;
     line-height: 1.6;
     max-width: 100%;
     text-align: left;
@@ -1166,8 +1166,7 @@ h4 {
   /* 6. Button container — side by side, one line */
   .hero-btn-group {
     justify-content: flex-start !important;
-    flex-wrap: wrap;
-    /* allow wrapping in case width is too small */
+    flex-wrap: nowrap;
     gap: 12px;
   }
 
