@@ -154,7 +154,7 @@ h4 {
   min-height: 100vh;
   display: flex;
   align-items: flex-end;
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.0) 100%), url('Image-one.jpg');
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.0) 100%), url('image-one.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1082,7 +1082,7 @@ h4 {
     background-position: right center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
-    background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.0) 70%), url('Image-one.jpg') !important;
+    background-image: linear-gradient(to top right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.0) 70%), url('image-one.jpg') !important;
     align-items: flex-end !important;
     min-height: 100svh;
   }
