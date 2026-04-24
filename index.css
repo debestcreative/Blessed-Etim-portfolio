@@ -1223,23 +1223,34 @@ h4 {
     letter-spacing: -0.01em;
   }
 
+  /* Adaptive Text Color for inactive links */
+  .mobile-nav-panel.nav-dark-mode a {
+    color: #1A1513;
+  }
+
   [data-theme="light"] .mobile-nav-panel a {
     color: #1A1513;
   }
 
-  .mobile-nav-panel a:hover,
-  .mobile-nav-panel a.active {
+  .mobile-nav-panel a:hover {
     background-color: rgba(255, 255, 255, 0.08);
     padding-left: 16px;
   }
 
-  [data-theme="light"] .mobile-nav-panel a:hover,
-  [data-theme="light"] .mobile-nav-panel a.active {
-    background-color: rgba(0, 0, 0, 0.03);
+  /* Active Pill Logic */
+  .mobile-nav-panel a.active {
+    background-color: var(--accent-color) !important; /* Brown/Tan over dark sections */
+    color: #FFFFFF !important;
+    padding-left: 16px;
   }
 
-  .mobile-nav-panel a.active {
-    color: var(--accent-color);
+  .mobile-nav-panel.nav-dark-mode a.active {
+    background-color: #1A1513 !important; /* Dark Slate over light sections */
+    color: #FFFFFF !important;
+  }
+
+  [data-theme="light"] .mobile-nav-panel a:hover {
+    background-color: rgba(0, 0, 0, 0.03);
   }
 
   .mobile-nav-divider {
