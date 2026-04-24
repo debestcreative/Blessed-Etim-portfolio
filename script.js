@@ -43,8 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  });
-
   // --- 3. Active Link State ---
   const currentPath = window.location.pathname;
   const navLinks = document.querySelectorAll('.nav-link');
