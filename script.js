@@ -424,42 +424,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Mobile Menu Toggle — targets the dedicated mobile-nav-panel
+  // Mobile Menu Toggle — redesigned floating card with GSAP
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileNavPanel = document.getElementById('mobile-nav-panel');
 
   if (mobileMenuBtn && mobileNavPanel) {
+    const toggleMenu = (open) => {
+      const icon = mobileMenuBtn.querySelector('i');
+      if (open) {
+        mobileNavPanel.style.display = 'flex';
+        mobileNavPanel.classList.add('mobile-active');
+        gsap.fromTo(mobileNavPanel, 
+          { opacity: 0, scale: 0.9, y: -20, transformOrigin: 'top right' },
+          { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "power2.out" }
+        );
+        if (icon) { icon.setAttribute('data-lucide', 'x'); lucide.createIcons(); }
+      } else {
+        gsap.to(mobileNavPanel, {
+          opacity: 0,
+          scale: 0.9,
+          y: -20,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => {
+            mobileNavPanel.classList.remove('mobile-active');
+            mobileNavPanel.style.display = 'none';
+          }
+        });
+        if (icon) { icon.setAttribute('data-lucide', 'menu'); lucide.createIcons(); }
+      }
+    };
+
     mobileMenuBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = mobileNavPanel.classList.contains('mobile-active');
-      if (isOpen) {
-        mobileNavPanel.classList.remove('mobile-active');
-        // Update icon
-        const icon = mobileMenuBtn.querySelector('i');
-        if (icon) { icon.setAttribute('data-lucide', 'menu'); lucide.createIcons(); }
-      } else {
-        mobileNavPanel.classList.add('mobile-active');
-        // Update icon to X
-        const icon = mobileMenuBtn.querySelector('i');
-        if (icon) { icon.setAttribute('data-lucide', 'x'); lucide.createIcons(); }
-      }
+      toggleMenu(!isOpen);
     });
 
     // Close panel when a nav link is tapped
     mobileNavPanel.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        mobileNavPanel.classList.remove('mobile-active');
-        const icon = mobileMenuBtn.querySelector('i');
-        if (icon) { icon.setAttribute('data-lucide', 'menu'); lucide.createIcons(); }
+        toggleMenu(false);
       });
     });
 
     // Close panel on outside tap
     document.addEventListener('click', (e) => {
-      if (!mobileNavPanel.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        mobileNavPanel.classList.remove('mobile-active');
-        const icon = mobileMenuBtn.querySelector('i');
-        if (icon) { icon.setAttribute('data-lucide', 'menu'); lucide.createIcons(); }
+      if (mobileNavPanel.classList.contains('mobile-active') && !mobileNavPanel.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        toggleMenu(false);
       }
     });
   }
