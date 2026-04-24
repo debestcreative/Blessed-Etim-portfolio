@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
       if (themeIconSvg) {
-        themeIconSvg.innerHTML = theme === 'dark' 
-          ? `<path d="${sunPath}"/>` 
+        themeIconSvg.innerHTML = theme === 'dark'
+          ? `<path d="${sunPath}"/>`
           : `<path d="${moonPath}"/>`;
       }
       initIcons();
@@ -103,12 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const typeSequence = (text, pause) => {
           const typeDur = text.length * 0.08;
           mainTimeline.to(typewriterElement, { duration: typeDur, text: text, ease: "none" })
-                      .to({}, { duration: pause })
-                      .to(typewriterElement, { duration: typeDur * 0.4, text: "", ease: "none" });
+            .to({}, { duration: pause })
+            .to(typewriterElement, { duration: typeDur * 0.4, text: "", ease: "none" });
         };
         const switchTitle = (newText) => {
           mainTimeline.to(heroTitle, { opacity: 0, y: -15, duration: 0.4, ease: "power2.inOut", onComplete: () => { heroTitle.textContent = newText; } })
-                      .to(heroTitle, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
+            .to(heroTitle, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" });
         };
         mainTimeline.set(heroTitle, { textContent: "Hey there!" });
         typeSequence("I'm Blessed...", 2);
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!hero) {
       header.classList.toggle('nav-dark-mode', isLightTheme);
       if (mobilePanel) mobilePanel.classList.toggle('nav-light-bg', isLightTheme);
-      return; 
+      return;
     }
     if (sections.length > 0 && typeof IntersectionObserver !== 'undefined') {
       const navObserver = new IntersectionObserver((entries) => {
