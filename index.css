@@ -1074,7 +1074,7 @@ h4 {
 
   /* 1. Background: keep face as focal point, fill screen */
   .hero-section {
-    background-position: 65% top !important;
+    background-position: 80% top !important;
     background-size: cover !important;
     /* Stronger gradient for text readability over the face */
     background-image:
