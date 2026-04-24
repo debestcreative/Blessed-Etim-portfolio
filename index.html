@@ -12,6 +12,18 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* Emergency Fallback for JS-driven sections */
+    .hero-content-wrapper, .stack-card, .section { opacity: 1 !important; visibility: visible !important; transform: none !important; clip-path: none !important; }
+  </style>
+  <script>
+    // Diagnostic / Error Tracker
+    window.addEventListener('error', function(e) {
+      console.warn('Site Diagnostic Error:', e.message);
+      // If critical libraries fail, we force-reveal everything
+      document.documentElement.classList.add('js-error');
+    });
+  </script>
 </head>
 
 <body>
@@ -56,10 +68,12 @@
     <div class="header-anchor-right">
       <div class="navbar-actions-anchored">
         <button id="theme-toggle" class="theme-toggle-anchored" aria-label="Toggle dark mode">
-          <i id="theme-icon" data-lucide="moon"></i>
+          <!-- Inlined SVG Fallback -->
+          <svg id="theme-icon-svg" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
         </button>
         <button id="mobile-menu-btn" class="mobile-menu-btn-anchored">
-          <i data-lucide="menu"></i>
+          <!-- Inlined SVG Fallback -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
         </button>
       </div>
     </div>
@@ -114,31 +128,35 @@
 
         <div class="grid grid-cols-4 stack-grid">
           <div class="card stack-card" style="text-align: center;">
-            <div class="icon-box" style="margin: 0 auto 20px;"><i data-lucide="shield"></i></div>
+            <div class="icon-box" style="margin: 0 auto 20px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
             <h4 style="margin-bottom: 12px; font-weight: 700;">Data Privacy</h4>
-            <p style="font-size: 15px; opacity: 0.8;">Navigating regulatory compliance and protecting digital rights.
-            </p>
+            <p style="font-size: 15px; opacity: 0.8;">Navigating regulatory compliance and protecting digital rights.</p>
           </div>
 
           <div class="card stack-card" style="text-align: center;">
-            <div class="icon-box" style="margin: 0 auto 20px;"><i data-lucide="lock"></i></div>
+            <div class="icon-box" style="margin: 0 auto 20px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
             <h4 style="margin-bottom: 12px; font-weight: 700;">Cybercrime</h4>
-            <p style="font-size: 15px; opacity: 0.8;">Analyzing legal frameworks addressing digital offenses and
-              security.</p>
+            <p style="font-size: 15px; opacity: 0.8;">Analyzing legal frameworks addressing digital offenses and security.</p>
           </div>
 
           <div class="card stack-card" style="text-align: center;">
-            <div class="icon-box" style="margin: 0 auto 20px;"><i data-lucide="link"></i></div>
+            <div class="icon-box" style="margin: 0 auto 20px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            </div>
             <h4 style="margin-bottom: 12px; font-weight: 700;">Blockchain</h4>
-            <p style="font-size: 15px; opacity: 0.8;">Understanding the regulatory landscape of decentralized systems.
-            </p>
+            <p style="font-size: 15px; opacity: 0.8;">Understanding the regulatory landscape of decentralized systems.</p>
           </div>
 
           <div class="card stack-card" style="text-align: center;">
-            <div class="icon-box" style="margin: 0 auto 20px;"><i data-lucide="cpu"></i></div>
+            <div class="icon-box" style="margin: 0 auto 20px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="22" y2="7"/><line x1="2" y1="17" x2="22" y2="17"/></svg>
+            </div>
             <h4 style="margin-bottom: 12px; font-weight: 700;">AI Governance</h4>
-            <p style="font-size: 15px; opacity: 0.8;">Formulating policies for ethical and accountable artificial
-              intelligence.</p>
+            <p style="font-size: 15px; opacity: 0.8;">Formulating policies for ethical and accountable artificial intelligence.</p>
           </div>
         </div>
       </div>
