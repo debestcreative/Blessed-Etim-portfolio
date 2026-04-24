@@ -1179,24 +1179,24 @@ h4 {
     text-overflow: ellipsis;
   }
 
-  /* Mobile nav floating card panel */
+  /* Mobile nav floating card panel (Micro-Menu) */
   .mobile-nav-panel {
     display: none;
     position: fixed;
-    top: 72px;
-    right: 16px;
+    top: 68px;
+    right: 12px;
     left: auto;
-    width: 260px;
-    background-color: rgba(26, 21, 19, 0.7);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 10px;
+    width: 190px;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 18px;
+    padding: 6px;
     z-index: 998;
     flex-direction: column;
     gap: 0;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transform-origin: top right;
   }
 
@@ -1205,9 +1205,9 @@ h4 {
   }
 
   [data-theme="light"] .mobile-nav-panel {
-    background-color: rgba(255, 253, 251, 0.8);
-    border-color: rgba(139, 69, 19, 0.1);
-    box-shadow: 0 15px 40px rgba(139, 69, 19, 0.1);
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   }
 
   .mobile-nav-panel a {
@@ -1216,8 +1216,8 @@ h4 {
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
-    padding: 11px 16px;
-    border-radius: 16px;
+    padding: 8px 12px;
+    border-radius: 12px;
     font-family: var(--font-primary);
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     letter-spacing: -0.01em;
@@ -1229,13 +1229,13 @@ h4 {
 
   .mobile-nav-panel a:hover,
   .mobile-nav-panel a.active {
-    background-color: rgba(255, 255, 255, 0.06);
-    padding-left: 22px;
+    background-color: rgba(255, 255, 255, 0.08);
+    padding-left: 16px;
   }
 
   [data-theme="light"] .mobile-nav-panel a:hover,
   [data-theme="light"] .mobile-nav-panel a.active {
-    background-color: rgba(139, 69, 19, 0.05);
+    background-color: rgba(0, 0, 0, 0.03);
   }
 
   .mobile-nav-panel a.active {
@@ -1243,13 +1243,7 @@ h4 {
   }
 
   .mobile-nav-divider {
-    height: 1px;
-    background: rgba(255, 255, 255, 0.05);
-    margin: 6px 12px;
-  }
-
-  [data-theme="light"] .mobile-nav-divider {
-    background: rgba(0, 0, 0, 0.05);
+    display: none;
   }
 }
 
